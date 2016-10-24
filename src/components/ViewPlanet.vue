@@ -17,7 +17,7 @@
 
 <script>
 import { MdlButton, MdlTextfield, directives } from 'vue-mdl';
-import planet from '../api/planet';
+import apiService from '../api/api-service';
 
 export default {
   components: {
@@ -43,7 +43,7 @@ export default {
   methods: {
     fetchRandomPlanet() {
       const randomPlanetId = Math.floor((Math.random() * 61) + 1);
-      planet.fetch(randomPlanetId).then((planetData) => {
+      apiService.fetch('planets', randomPlanetId).then((planetData) => {
         this.planetData = Object.assign(this.planetData, planetData);
       });
     },

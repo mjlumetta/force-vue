@@ -21,7 +21,7 @@
 
 <script>
 import { MdlButton, MdlTextfield, directives } from 'vue-mdl';
-import starship from '../api/starship';
+import apiService from '../api/api-service';
 
 export default {
   components: {
@@ -52,7 +52,7 @@ export default {
   methods: {
     fetchRandomStarship() {
       const randomStarshipId = Math.floor((Math.random() * 37) + 1);
-      starship.fetch(randomStarshipId).then((starshipData) => {
+      apiService.fetch('starships', randomStarshipId).then((starshipData) => {
         this.starshipData = Object.assign(this.starshipData, starshipData);
       });
     },

@@ -23,6 +23,7 @@
 <script>
 import { MdlButton, MdlTextfield, directives } from 'vue-mdl';
 import person from '../api/person';
+import apiService from '../api/api-service';
 
 export default {
   components: {
@@ -53,7 +54,7 @@ export default {
       this.imageShow = false;
       this.personImageMsg = '';
       const randomPersonId = Math.floor((Math.random() * 87) + 1);
-      person.fetch(randomPersonId).then((personData) => {
+      apiService.fetch('people', randomPersonId).then((personData) => {
         this.personData = Object.assign(this.personData, personData);
         person.getPicture(this.personData.name).then((data) => {
           this.loading = false;
